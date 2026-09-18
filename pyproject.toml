@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-banxico"
+version = "0.1.0"
+description = "Servidor MCP para consultar el tipo de cambio oficial (USD/MXN), inflación (INPC), UDIS y tasas de Banxico (Banco de México)"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Inaki Sobera", email = "inakisobera8@gmail.com"}
+]
+keywords = [
+    "mcp",
+    "mcp-server",
+    "banxico",
+    "mexico",
+    "tipo-de-cambio",
+    "usd-mxn",
+    "fintech",
+    "ai-agents",
+    "claude-desktop",
+    "cursor",
+    "udis",
+    "inflacion"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "mcp>=1.2.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1",
+]
+
+[project.scripts]
+mcp-banxico = "mcp_banxico.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/nanisadw3/mcp-banxico"
+Repository = "https://github.com/nanisadw3/mcp-banxico"
+Issues = "https://github.com/nanisadw3/mcp-banxico/issues"
+
+[tool.setuptools.packages.find]
+include = ["mcp_banxico*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
