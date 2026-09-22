@@ -1,5 +1,6 @@
 # 🇲🇽 mcp-banxico
 
+[![PyPI](https://img.shields.io/pypi/v/mcp-banxico.svg)](https://pypi.org/project/mcp-banxico/)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![MCP](https://img.shields.io/badge/MCP-Protocol_2.0-purple.svg)](https://modelcontextprotocol.io/)
@@ -40,23 +41,20 @@ flowchart LR
 
 ## ⚡ Instalación y Uso Rápido
 
-No necesitas clonar el repositorio para usarlo. Puedes ejecutarlo directamente desde este repositorio:
+No necesitas clonar el repositorio para usarlo. Puedes ejecutarlo directamente con `uvx` o `pip`:
 
 ### Opción 1: Con `uvx` (Recomendado para Claude Desktop y Cursor)
 
 ```bash
-uvx --from git+https://github.com/nanisadw3/mcp-banxico mcp-banxico
+uvx mcp-banxico
 ```
 
 ### Opción 2: Con `pip`
 
 ```bash
-pip install git+https://github.com/nanisadw3/mcp-banxico
+pip install mcp-banxico
 mcp-banxico
 ```
-
-> **Nota:** el paquete aún no está publicado en PyPI. Cuando lo esté, bastará con
-> `uvx mcp-banxico` o `pip install mcp-banxico`.
 
 ---
 
@@ -73,7 +71,7 @@ Agrega la siguiente configuración a tu archivo `claude_desktop_config.json`:
   "mcpServers": {
     "banxico": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/nanisadw3/mcp-banxico", "mcp-banxico"],
+      "args": ["mcp-banxico"],
       "env": {
         "BANXICO_TOKEN": "TU_TOKEN_DE_BANXICO_AQUI"
       }
@@ -86,7 +84,7 @@ Agrega la siguiente configuración a tu archivo `claude_desktop_config.json`:
 En `Settings` -> `Features` -> `MCP Servers` -> `Add new MCP server`:
 * **Name:** `banxico`
 * **Type:** `command`
-* **Command:** `uvx --from git+https://github.com/nanisadw3/mcp-banxico mcp-banxico`
+* **Command:** `uvx mcp-banxico`
 
 ---
 
