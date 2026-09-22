@@ -6,9 +6,11 @@
 [![MCP](https://img.shields.io/badge/MCP-Protocol_2.0-purple.svg)](https://modelcontextprotocol.io/)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)]()
 
-Servidor oficial comunitario de **Model Context Protocol (MCP)** para conectar asistentes de Inteligencia Artificial (**Claude Desktop**, **Cursor**, **Cline**, **Gemini CLI**) con el **Sistema de Información Económica (SIE) del Banco de México (Banxico)**.
+Servidor comunitario de **Model Context Protocol (MCP)** para conectar asistentes de Inteligencia Artificial (**Claude Desktop**, **Cursor**, **Cline**, **Gemini CLI**) con el **Sistema de Información Económica (SIE) del Banco de México (Banxico)**.
 
 Permite a tus modelos y agentes de IA consultar en tiempo real el tipo de cambio oficial (USD/MXN), inflación (INPC), valor de las UDIS, tasas de interés interbancarias (TIIE) y cualquier serie económica oficial de México.
+
+> **Proyecto independiente.** No está afiliado ni respaldado por el Banco de México. Consume la API pública del SIE, para la que necesitas tu propio token gratuito.
 
 ---
 

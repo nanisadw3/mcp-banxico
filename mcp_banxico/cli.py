@@ -47,7 +47,7 @@ def main() -> None:
     """Punto de entrada principal para el comando mcp-banxico."""
     parser = argparse.ArgumentParser(
         prog="mcp-banxico",
-        description="Servidor MCP oficial para consultar datos económicos y tipo de cambio de Banxico.",
+        description="Servidor MCP comunitario para consultar datos económicos y tipo de cambio de Banxico. Proyecto independiente, sin afiliación con el Banco de México.",
     )
     parser.add_argument(
         "--version",
