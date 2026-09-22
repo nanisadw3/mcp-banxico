@@ -40,20 +40,23 @@ flowchart LR
 
 ## ⚡ Instalación y Uso Rápido
 
-No necesitas clonar el repositorio para usarlo. Puedes ejecutarlo directamente con `uvx` o `pip`:
+No necesitas clonar el repositorio para usarlo. Puedes ejecutarlo directamente desde este repositorio:
 
 ### Opción 1: Con `uvx` (Recomendado para Claude Desktop y Cursor)
 
 ```bash
-uvx mcp-banxico
+uvx --from git+https://github.com/nanisadw3/mcp-banxico mcp-banxico
 ```
 
 ### Opción 2: Con `pip`
 
 ```bash
-pip install mcp-banxico
+pip install git+https://github.com/nanisadw3/mcp-banxico
 mcp-banxico
 ```
+
+> **Nota:** el paquete aún no está publicado en PyPI. Cuando lo esté, bastará con
+> `uvx mcp-banxico` o `pip install mcp-banxico`.
 
 ---
 
@@ -70,7 +73,7 @@ Agrega la siguiente configuración a tu archivo `claude_desktop_config.json`:
   "mcpServers": {
     "banxico": {
       "command": "uvx",
-      "args": ["mcp-banxico"],
+      "args": ["--from", "git+https://github.com/nanisadw3/mcp-banxico", "mcp-banxico"],
       "env": {
         "BANXICO_TOKEN": "TU_TOKEN_DE_BANXICO_AQUI"
       }
@@ -83,7 +86,7 @@ Agrega la siguiente configuración a tu archivo `claude_desktop_config.json`:
 En `Settings` -> `Features` -> `MCP Servers` -> `Add new MCP server`:
 * **Name:** `banxico`
 * **Type:** `command`
-* **Command:** `uvx mcp-banxico`
+* **Command:** `uvx --from git+https://github.com/nanisadw3/mcp-banxico mcp-banxico`
 
 ---
 
