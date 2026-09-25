@@ -10,13 +10,14 @@ except ImportError:  # pragma: no cover
     from mcp.server.fastmcp import FastMCP as MCPServer
 
 from .client import BanxicoAPIError, BanxicoClient
-from .constants import SERIES
+from .constants import PACKAGE_VERSION, SERIES
 
 
 def create_server(token: str | None = None) -> MCPServer:
     """Crea y configura una instancia del servidor MCP para Banxico."""
     server = MCPServer(
         name="mcp-banxico",
+        version=PACKAGE_VERSION,
         instructions=(
             "Servidor MCP para consultar datos económicos oficiales del Banco de México (Banxico). "
             "Proporciona tipos de cambio (USD/MXN FIX y liquidación), inflación (INPC), "
