@@ -92,7 +92,7 @@ async def test_tool_tipo_cambio_usd_date_range(server):
 async def test_tool_inflacion_mexico_success(server):
     mock_data = {
         "serie": "INFLACION_ANUAL",
-        "id_serie": "SP74625",
+        "id_serie": "SP30578",
         "nombre": "Inflación Anual (INPC)",
         "descripcion": "Variación porcentual anual",
         "fecha": "08/2026",
@@ -115,7 +115,7 @@ async def test_tool_inflacion_mexico_success(server):
 async def test_tool_valor_udis_success(server):
     mock_data = {
         "serie": "UDIS",
-        "id_serie": "SP68254",
+        "id_serie": "SP68257",
         "nombre": "Valor de la UDI",
         "descripcion": "UDI",
         "fecha": "18/09/2026",
@@ -138,7 +138,7 @@ async def test_tool_valor_udis_success(server):
 async def test_tool_tasa_interes_banxico_success(server):
     mock_data = {
         "serie": "TIIE_28",
-        "id_serie": "SF61745",
+        "id_serie": "SF43783",
         "nombre": "TIIE 28 días",
         "descripcion": "TIIE",
         "fecha": "18/09/2026",

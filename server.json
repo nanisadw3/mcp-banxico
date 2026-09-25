@@ -3,7 +3,7 @@
   "name": "io.github.nanisadw3/banxico",
   "title": "Banxico (Banco de México)",
   "description": "Official Mexican economic data from Banxico: USD/MXN, inflation (INPC), UDIS and TIIE rates.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "repository": {
     "url": "https://github.com/nanisadw3/mcp-banxico",
     "source": "github"
@@ -12,7 +12,7 @@
     {
       "registryType": "pypi",
       "identifier": "mcp-banxico",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "transport": {
         "type": "stdio"
       },

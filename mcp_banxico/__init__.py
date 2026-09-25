@@ -1,6 +1,7 @@
 """mcp-banxico - Servidor MCP oficial para consultar datos económicos y tipo de cambio de Banxico."""
 
-__version__ = "0.1.1"
+from .constants import PACKAGE_VERSION as __version__
+
 __author__ = "Inaki Sobera"
 __email__ = "inakisobera8@gmail.com"
 

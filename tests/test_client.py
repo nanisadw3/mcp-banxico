@@ -11,7 +11,10 @@ from mcp_banxico.client import BanxicoAPIError, BanxicoClient
 
 
 @pytest.mark.asyncio
-async def test_client_missing_token_raises_helpful_error():
+async def test_client_missing_token_raises_helpful_error(monkeypatch):
+    # El cliente cae a BANXICO_TOKEN del entorno cuando no se le pasa token,
+    # así que hay que quitarlo para probar el caso sin credencial.
+    monkeypatch.delenv("BANXICO_TOKEN", raising=False)
     client = BanxicoClient(token="")
     with pytest.raises(BanxicoAPIError, match="No se encontró el token de Banxico"):
         await client.get_series_data("SF43718")
@@ -77,7 +80,7 @@ async def test_client_get_latest_value():
         "bmx": {
             "series": [
                 {
-                    "idSerie": "SP68254",
+                    "idSerie": "SP68257",
                     "titulo": "Valor de la UDI",
                     "datos": [{"fecha": "18/09/2026", "dato": "8.145023"}],
                 }
@@ -92,7 +95,7 @@ async def test_client_get_latest_value():
         result = await client.get_latest_value("UDIS")
 
         assert result["serie"] == "UDIS"
-        assert result["id_serie"] == "SP68254"
+        assert result["id_serie"] == "SP68257"
         assert result["valor"] == "8.145023"
         assert result["fecha"] == "18/09/2026"
 
