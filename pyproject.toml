@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mcp-banxico"
-version = "0.1.2"
+version = "0.1.3"
 description = "Servidor MCP para consultar el tipo de cambio oficial (USD/MXN), inflación (INPC), UDIS y tasas de Banxico (Banco de México)"
 readme = "README.md"
 license = {text = "MIT"}

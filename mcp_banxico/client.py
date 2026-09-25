@@ -7,7 +7,12 @@ from typing import Any
 
 import httpx
 
-from .constants import BANXICO_API_BASE_URL, BANXICO_TOKEN_HELP_URL, SERIES
+from .constants import (
+    BANXICO_API_BASE_URL,
+    BANXICO_TOKEN_HELP_URL,
+    PACKAGE_VERSION,
+    SERIES,
+)
 
 
 class BanxicoAPIError(Exception):
@@ -25,7 +30,7 @@ class BanxicoClient:
     def _get_headers(self) -> dict[str, str]:
         headers = {
             "Accept": "application/json",
-            "User-Agent": "mcp-banxico/0.1.0 (https://github.com/nanisadw3/mcp-banxico)",
+            "User-Agent": f"mcp-banxico/{PACKAGE_VERSION} (https://github.com/nanisadw3/mcp-banxico)",
         }
         if self.token:
             headers["Bmx-Token"] = self.token
@@ -101,6 +106,7 @@ class BanxicoClient:
             "serie": series_key,
             "id_serie": info["id"],
             "nombre": info["nombre"],
+            "unidad": info["unidad"],
             "descripcion": info["descripcion"],
             "fecha": ultimo.get("fecha", "N/D"),
             "valor": ultimo.get("dato", "N/D"),
