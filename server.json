@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.nanisadw3/banxico",
+  "title": "Banxico (Banco de México)",
+  "description": "Official Mexican economic data from Banxico: USD/MXN, inflation (INPC), UDIS and TIIE rates.",
+  "version": "0.1.2",
+  "repository": {
+    "url": "https://github.com/nanisadw3/mcp-banxico",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "mcp-banxico",
+      "version": "0.1.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "BANXICO_TOKEN",
+          "description": "Free API token for Banxico's SIE (Sistema de Informacion Economica)",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
