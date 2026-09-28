@@ -8,15 +8,46 @@ Community Model Context Protocol (MCP) server for querying official economic ind
 
 Enables AI agents and assistants (**Claude Desktop**, **Cursor**, **Cline**, **Gemini CLI**) to retrieve real-time USD/MXN exchange rates (FIX & liquidation), inflation (CPI / INPC), UDIS investment units, interbank interest rates (TIIE), and international reserves.
 
+> **Independent project.** Not affiliated with or endorsed by Banco de México.
+> It reads the public SIE API.
+
 ---
 
 ## ⚡ Quick Start
+
+### Option 0 — Hosted endpoint (no install, no token)
+
+A public instance is available. Nothing to install and no Banxico token to
+request — the hosted instance carries its own:
+
+```
+https://banxico-mcp.duckdns.org/mcp
+```
+
+Streamable HTTP. In `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "banxico": {
+      "type": "streamable-http",
+      "url": "https://banxico-mcp.duckdns.org/mcp"
+    }
+  }
+}
+```
+
+> Community service on self-hosted infrastructure, rate limited per IP. For
+> heavy or production use, install it locally with your own token so you don't
+> depend on this instance staying up.
+
+### Option 1 — Local install
 
 ```bash
 uvx mcp-banxico
 ```
 
-### Claude Desktop Configuration
+### Claude Desktop Configuration (local install)
 
 Add to your `claude_desktop_config.json`:
 
@@ -35,6 +66,21 @@ Add to your `claude_desktop_config.json`:
 ```
 
 Free tokens can be requested at: [Banxico SIE API Token Portal](https://www.banxico.org.mx/SieAPIRest/service/v1/token).
+
+## 🌐 Self-hosting a remote instance
+
+```bash
+mcp-banxico --transport streamable-http \
+            --host 127.0.0.1 --port 8005 \
+            --allowed-host your-domain.example
+```
+
+`--allowed-host` is required behind a reverse proxy: the HTTP transport
+validates the `Host` header against DNS rebinding attacks and answers `421` to
+every request unless the public name is declared.
+
+The in-memory cache (1 h by default, tune with `BANXICO_CACHE_TTL`) keeps a
+shared token from exhausting its SIE quota.
 
 ## Available Tools
 

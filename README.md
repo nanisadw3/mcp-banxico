@@ -12,7 +12,7 @@ Servidor comunitario de **Model Context Protocol (MCP)** para conectar asistente
 
 Permite a tus modelos y agentes de IA consultar en tiempo real el tipo de cambio oficial (USD/MXN), inflación (INPC), valor de las UDIS, tasas de interés interbancarias (TIIE) y cualquier serie económica oficial de México.
 
-> **Proyecto independiente.** No está afiliado ni respaldado por el Banco de México. Consume la API pública del SIE, para la que necesitas tu propio token gratuito.
+> **Proyecto independiente.** No está afiliado ni respaldado por el Banco de México. Consume la API pública del SIE. Si lo instalas en local necesitas tu propio token gratuito; el endpoint remoto de más abajo no lo requiere.
 
 ---
 
