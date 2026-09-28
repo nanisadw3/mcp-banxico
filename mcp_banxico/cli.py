@@ -13,6 +13,44 @@ from .constants import BANXICO_TOKEN_HELP_URL, SERIES
 from .server import create_server
 
 
+def build_transport_security(allowed_hosts: list[str] | None):
+    """Arma la configuración anti DNS-rebinding para los transportes HTTP.
+
+    Detrás de un proxy inverso el header Host que llega es el nombre público,
+    que la librería no conoce: sin declararlo responde 421 a cada petición.
+    Devolver None deja que la librería aplique su default para loopback.
+    """
+    if not allowed_hosts:
+        return None
+
+    from mcp.server.transport_security import TransportSecuritySettings
+
+    hosts: list[str] = []
+    origins: list[str] = []
+    for nombre in allowed_hosts:
+        # El proxy puede o no incluir el puerto en el Host.
+        for entrada in (nombre, f"{nombre}:*"):
+            if entrada not in hosts:
+                hosts.append(entrada)
+        for entrada in (f"https://{nombre}", f"http://{nombre}"):
+            if entrada not in origins:
+                origins.append(entrada)
+
+    # Conservar loopback para que las pruebas locales sigan funcionando.
+    for entrada in ("127.0.0.1:*", "localhost:*", "[::1]:*"):
+        if entrada not in hosts:
+            hosts.append(entrada)
+    for entrada in ("http://127.0.0.1:*", "http://localhost:*", "http://[::1]:*"):
+        if entrada not in origins:
+            origins.append(entrada)
+
+    return TransportSecuritySettings(
+        enable_dns_rebinding_protection=True,
+        allowed_hosts=hosts,
+        allowed_origins=origins,
+    )
+
+
 def test_connection(token: str | None = None) -> int:
     """Prueba la conexión a la API de Banxico consultando los datos más recientes."""
     print("=" * 60)
@@ -80,6 +118,16 @@ def main() -> None:
         help="Host de escucha para transportes HTTP (por defecto: 127.0.0.1)",
     )
     parser.add_argument(
+        "--allowed-host",
+        action="append",
+        default=[],
+        metavar="HOST",
+        help=(
+            "Nombre público aceptado en el header Host al correr detrás de un "
+            "proxy inverso. Repetible. Sin esto el servidor rechaza con 421."
+        ),
+    )
+    parser.add_argument(
         "--port",
         type=int,
         default=8000,
@@ -98,7 +146,12 @@ def main() -> None:
     else:
         # Los transportes HTTP necesitan dirección de escucha; detrás de nginx
         # esto se queda en loopback y el proxy publica el TLS.
-        server.run(transport=args.transport, host=args.host, port=args.port)
+        server.run(
+            transport=args.transport,
+            host=args.host,
+            port=args.port,
+            transport_security=build_transport_security(args.allowed_host),
+        )
 
 
 if __name__ == "__main__":
