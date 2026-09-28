@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.nanisadw3/banxico",
   "title": "Banxico (Banco de México)",
-  "description": "Official Mexican economic indicators from Banco de México's SIE API: USD/MXN exchange rate, inflation (INPC), UDIS, TIIE rates and international reserves.",
+  "description": "Mexico's official economic data from Banxico: USD/MXN, inflation, UDIS, TIIE and reserves.",
   "version": "0.2.0",
   "repository": {
     "url": "https://github.com/nanisadw3/mcp-banxico",
