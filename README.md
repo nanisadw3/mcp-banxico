@@ -71,6 +71,75 @@ Transporte `streamable-http`. En Claude Desktop:
 > por IP. Para uso intensivo o en producción, instálalo localmente con tu token:
 > así no dependes de que esta instancia esté disponible.
 
+#### Probarlo a mano (curl o Postman)
+
+El endpoint habla JSON-RPC 2.0 sobre HTTP POST. Son dos peticiones: una para
+abrir sesión y otra para llamar la herramienta.
+
+**1. Abrir sesión.** La respuesta trae el header `mcp-session-id`:
+
+```bash
+curl -i -X POST https://banxico-mcp.duckdns.org/mcp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "initialize",
+    "params": {
+      "protocolVersion": "2025-06-18",
+      "capabilities": {},
+      "clientInfo": { "name": "curl", "version": "1" }
+    }
+  }'
+```
+
+**2. Llamar una herramienta**, pasando ese id en el header:
+
+```bash
+curl -X POST https://banxico-mcp.duckdns.org/mcp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -H 'mcp-session-id: EL_ID_DEL_PASO_1' \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/call",
+    "params": { "name": "tipo_cambio_usd", "arguments": {} }
+  }'
+```
+
+Respuesta (el contenido viaja como evento SSE, en la línea `data:`):
+
+```json
+{
+  "serie": "TIPO_CAMBIO_FIX",
+  "id_serie": "SF43718",
+  "nombre": "Tipo de cambio FIX (Pesos por Dólar)",
+  "unidad": "Pesos por dólar",
+  "fecha": "28/09/2026",
+  "valor": "17.8413"
+}
+```
+
+Otros ejemplos de `params`:
+
+```json
+{ "name": "inflacion_mexico",         "arguments": { "tipo": "anual" } }
+{ "name": "valor_udis",               "arguments": {} }
+{ "name": "tasa_interes_banxico",     "arguments": { "tipo": "objetivo" } }
+{ "name": "reservas_internacionales", "arguments": {} }
+{ "name": "consultar_serie_sie",      "arguments": { "id_serie": "SF43718",
+                                                     "fecha_inicio": "2026-09-01",
+                                                     "fecha_fin": "2026-09-28" } }
+```
+
+> **Dos cosas que confunden al probar desde Postman.**
+> El header `mcp-session-id` es obligatorio a partir de la segunda petición:
+> sin él la respuesta es `400`. Y si mandas `Accept: application/json` a secas
+> obtienes `406` — el servidor exige aceptar **ambos** tipos, o puedes omitir
+> el header por completo.
+
 ### Opción 1: Con `uvx` (Recomendado para Claude Desktop y Cursor)
 
 ```bash
