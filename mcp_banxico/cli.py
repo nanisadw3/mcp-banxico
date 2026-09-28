@@ -67,9 +67,23 @@ def main() -> None:
     )
     parser.add_argument(
         "--transport",
-        choices=["stdio", "sse"],
+        choices=["stdio", "sse", "streamable-http"],
         default="stdio",
-        help="Tipo de transporte para el protocolo MCP (por defecto: stdio)",
+        help=(
+            "Tipo de transporte MCP (por defecto: stdio). "
+            "'streamable-http' sirve el endpoint remoto; 'sse' está deprecado."
+        ),
+    )
+    parser.add_argument(
+        "--host",
+        default="127.0.0.1",
+        help="Host de escucha para transportes HTTP (por defecto: 127.0.0.1)",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=8000,
+        help="Puerto de escucha para transportes HTTP (por defecto: 8000)",
     )
 
     args = parser.parse_args()
@@ -77,9 +91,14 @@ def main() -> None:
     if args.test:
         sys.exit(test_connection(args.token))
 
-    # Iniciar servidor MCP en modo stdio (o sse)
     server = create_server(token=args.token)
-    server.run(transport=args.transport)
+
+    if args.transport == "stdio":
+        server.run(transport="stdio")
+    else:
+        # Los transportes HTTP necesitan dirección de escucha; detrás de nginx
+        # esto se queda en loopback y el proxy publica el TLS.
+        server.run(transport=args.transport, host=args.host, port=args.port)
 
 
 if __name__ == "__main__":
