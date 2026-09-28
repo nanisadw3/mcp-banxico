@@ -45,7 +45,31 @@ flowchart LR
 
 ## ⚡ Instalación y Uso Rápido
 
-No necesitas clonar el repositorio para usarlo. Puedes ejecutarlo directamente con `uvx` o `pip`:
+### Opción 0: Endpoint remoto (sin instalar nada, sin token)
+
+Hay una instancia pública hospedada. No requiere instalación ni que saques tu
+propio token de Banxico:
+
+```
+https://banxico-mcp.duckdns.org/mcp
+```
+
+Transporte `streamable-http`. En Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "banxico": {
+      "type": "streamable-http",
+      "url": "https://banxico-mcp.duckdns.org/mcp"
+    }
+  }
+}
+```
+
+> Es un servicio comunitario en infraestructura propia, con límite de peticiones
+> por IP. Para uso intensivo o en producción, instálalo localmente con tu token:
+> así no dependes de que esta instancia esté disponible.
 
 ### Opción 1: Con `uvx` (Recomendado para Claude Desktop y Cursor)
 
@@ -102,6 +126,23 @@ En `Settings` -> `Features` -> `MCP Servers` -> `Add new MCP server`:
 | `tasa_interes_banxico` | `SF61745` / `SF43783` | Consulta la TIIE a 28 días o la Tasa Objetivo de fondeo interbancario. |
 | `reservas_internacionales`| `SF46410` | Saldo actual de reservas internacionales netas en millones de USD. |
 | `consultar_serie_sie` | *Cualquiera* | Consulta avanzada para cualquier ID de serie del catálogo general de Banxico. |
+
+---
+
+## 🌐 Hospedar tu propia instancia remota
+
+```bash
+mcp-banxico --transport streamable-http \
+            --host 127.0.0.1 --port 8005 \
+            --allowed-host tu-dominio.example
+```
+
+`--allowed-host` es obligatorio detrás de un proxy inverso: el transporte HTTP
+valida el header `Host` contra ataques de DNS rebinding y, sin declarar el
+nombre público, responde `421` a todas las peticiones.
+
+La caché en memoria (1 h por defecto, `BANXICO_CACHE_TTL` para ajustarla)
+evita que el token compartido agote su límite en el SIE.
 
 ---
 
