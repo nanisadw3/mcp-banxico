@@ -14,6 +14,12 @@ Permite a tus modelos y agentes de IA consultar en tiempo real el tipo de cambio
 
 > **Proyecto independiente.** No está afiliado ni respaldado por el Banco de México. Consume la API pública del SIE. Si lo instalas en local necesitas tu propio token gratuito; el endpoint remoto de más abajo no lo requiere.
 
+## ▶️ Demo en video
+
+[![Así conecté Claude al Banco de México](https://img.youtube.com/vi/saaD665cn9g/maxresdefault.jpg)](https://www.youtube.com/watch?v=saaD665cn9g)
+
+Diez minutos sin cortes: un modelo local (Qwen 2.5 en Ollama) y Claude Desktop pasan de *"no tengo acceso en tiempo real"* a responder con el tipo de cambio oficial. El momento clave está en el [minuto 2:52](https://www.youtube.com/watch?v=saaD665cn9g&t=172s).
+
 ---
 
 ## 🏗️ Arquitectura

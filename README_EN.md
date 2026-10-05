@@ -11,6 +11,12 @@ Enables AI agents and assistants (**Claude Desktop**, **Cursor**, **Cline**, **G
 > **Independent project.** Not affiliated with or endorsed by Banco de México.
 > It reads the public SIE API.
 
+## ▶️ Video demo
+
+[![Así conecté Claude al Banco de México (video demo, in Spanish)](https://img.youtube.com/vi/saaD665cn9g/maxresdefault.jpg)](https://www.youtube.com/watch?v=saaD665cn9g)
+
+Ten-minute uncut demo (in Spanish): a local model (Qwen 2.5 on Ollama) and Claude Desktop go from *"I don't have real-time access"* to answering with the official exchange rate. The key moment is at [2:52](https://www.youtube.com/watch?v=saaD665cn9g&t=172s).
+
 ---
 
 ## ⚡ Quick Start
