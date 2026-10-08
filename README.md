@@ -200,10 +200,10 @@ En `Settings` -> `Features` -> `MCP Servers` -> `Add new MCP server`:
 | Herramienta | Serie Banxico | Descripción |
 | :--- | :--- | :--- |
 | `tipo_cambio_usd` | `SF43718` / `SF60653` | Consulta el tipo de cambio oficial peso/dólar (FIX o liquidación), hoy o en un rango de fechas. |
-| `inflacion_mexico` | `SP74625` / `SP68257` | Consulta la inflación general anual o mensual de México basada en el INPC. |
-| `valor_udis` | `SP68254` | Consulta el valor oficial de las Unidades de Inversión (UDIS) en pesos mexicanos. |
-| `tasa_interes_banxico` | `SF61745` / `SF43783` | Consulta la TIIE a 28 días o la Tasa Objetivo de fondeo interbancario. |
-| `reservas_internacionales`| `SF46410` | Saldo actual de reservas internacionales netas en millones de USD. |
+| `inflacion_mexico` | `SP30578` / `SP30577` | Consulta la inflación general anual o mensual de México basada en el INPC. |
+| `valor_udis` | `SP68257` | Consulta el valor oficial de las Unidades de Inversión (UDIS) en pesos mexicanos. |
+| `tasa_interes_banxico` | `SF43783` / `SF61745` | Consulta la TIIE a 28 días o la Tasa Objetivo de fondeo interbancario. |
+| `reservas_internacionales`| `SF43707` | Saldo de la reserva internacional del Banco de México, en millones de USD. |
 | `consultar_serie_sie` | *Cualquiera* | Consulta avanzada para cualquier ID de serie del catálogo general de Banxico. |
 
 ---
