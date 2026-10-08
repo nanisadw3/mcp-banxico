@@ -17,6 +17,10 @@ Enables AI agents and assistants (**Claude Desktop**, **Cursor**, **Cline**, **G
 
 Ten-minute uncut demo (in Spanish): a local model (Qwen 2.5 on Ollama) and Claude Desktop go from *"I don't have real-time access"* to answering with the official exchange rate. The key moment is at [2:52](https://www.youtube.com/watch?v=saaD665cn9g&t=172s).
 
+## 📈 Live data
+
+**[banxico-mcp.duckdns.org](https://banxico-mcp.duckdns.org/)**: exchange rates (US dollar, euro, pound, Canadian dollar and yen), interest rates, the CETES yield curve, inflation, UDIS and international reserves, 22 official indicators updated every business day (page in Spanish). Each one is downloadable as CSV. It lives on the same domain as this server's hosted endpoint.
+
 ---
 
 ## ⚡ Quick Start

@@ -20,6 +20,10 @@ Permite a tus modelos y agentes de IA consultar en tiempo real el tipo de cambio
 
 Diez minutos sin cortes: un modelo local (Qwen 2.5 en Ollama) y Claude Desktop pasan de *"no tengo acceso en tiempo real"* a responder con el tipo de cambio oficial. El momento clave está en el [minuto 2:52](https://www.youtube.com/watch?v=saaD665cn9g&t=172s).
 
+## 📈 Datos en vivo
+
+**[banxico-mcp.duckdns.org](https://banxico-mcp.duckdns.org/)**: tipo de cambio (dólar, euro, libra, dólar canadiense y yen), tasas de interés, curva de CETES, inflación, UDIS y reservas internacionales, 22 indicadores oficiales que se actualizan cada día hábil. Cada uno se puede descargar en CSV. Vive en el mismo dominio que el endpoint remoto de este servidor.
+
 ---
 
 ## 🏗️ Arquitectura
